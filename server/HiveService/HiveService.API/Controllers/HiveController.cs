@@ -29,12 +29,23 @@ namespace HiveService.API.Controllers
             return await query.ToListAsync();
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Hive>> GetHive(Guid id)
+        {
+            var hive = await _context.Hives.FindAsync(id);
+            if (hive == null)
+            {
+                return NotFound();
+            }
+            return hive;
+        }
+
         [HttpPost]
         public async Task<ActionResult<Hive>> CreateHive(Hive hive)
         {
             _context.Hives.Add(hive);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetHives), new { id = hive.HiveId }, hive);
+            return CreatedAtAction(nameof(GetHive), new { id = hive.HiveId }, hive);
         }
     }
 }
