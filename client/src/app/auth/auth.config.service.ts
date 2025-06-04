@@ -9,7 +9,9 @@ export class AuthConfigService {
     const authConfig: AuthConfig = {
       domain: window.env.AUTH0_DOMAIN,
       clientId: window.env.AUTH0_CLIENT_ID,
-      audience: window.env.AUTH0_AUDIENCE,
+      authorizationParams: {
+        audience: window.env.AUTH0_AUDIENCE,
+      },
       useRefreshTokens: true,
       cacheLocation: 'localstorage'
     };

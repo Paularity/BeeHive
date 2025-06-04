@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
     return this.auth.isAuthenticated$.pipe(
-      map((loggedIn) => {
+      map((loggedIn: boolean) => {
         if (!loggedIn) {
           this.auth.loginWithRedirect({ appState: { target: state.url } });
         }

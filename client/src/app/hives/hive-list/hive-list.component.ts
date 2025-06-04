@@ -18,6 +18,8 @@ export class HiveListComponent implements OnInit {
   }
 
   loadHives(): void {
-    this.hiveService.getHives(this.statusFilter.value).subscribe(h => this.hives = h);
+    this.hiveService
+      .getHives(this.statusFilter.value ?? undefined)
+      .subscribe((h: Hive[]) => (this.hives = h));
   }
 }
