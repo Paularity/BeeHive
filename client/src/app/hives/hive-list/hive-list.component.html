@@ -1,0 +1,15 @@
+<div class="p-mb-3">
+  <p-chip *ngFor="let status of statuses"
+          [label]="status"
+          class="p-mr-2"
+          [class.p-chip-highlight]="statusFilter.value === status"
+          (click)="statusFilter.setValue(status); loadHives();">
+  </p-chip>
+</div>
+
+<div *ngFor="let hive of hives" class="p-card p-mb-2">
+  <div class="p-card-title">{{ hive.hiveName }}</div>
+  <div class="p-card-content">
+    Location: {{ hive.location }} - Status: {{ hive.healthStatus }}
+  </div>
+</div>

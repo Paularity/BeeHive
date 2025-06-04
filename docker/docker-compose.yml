@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  gateway:
+    build: ../server/Gateway
+    environment:
+      - AUTH0_DOMAIN=${AUTH0_DOMAIN}
+      - AUTH0_AUDIENCE=${AUTH0_AUDIENCE}
+    networks:
+      - kaiju-net
+    ports:
+      - "8080:80"
+  hiveservice:
+    build: ../server/HiveService/HiveService.API
+    environment:
+      - AUTH0_DOMAIN=${AUTH0_DOMAIN}
+      - AUTH0_AUDIENCE=${AUTH0_AUDIENCE}
+    networks:
+      - kaiju-net
+
+networks:
+  kaiju-net:
+    driver: bridge
